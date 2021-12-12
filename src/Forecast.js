@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 
 export default function Forecast() {
   return (
@@ -50,7 +51,7 @@ export default function Forecast() {
           </div>
         </div>
         <div className="col-2 justify-content-around">
-          <div className="card">
+          <div className="card ">
             <div>Tmrw+4</div>
             <img
               src="images/sunflower.jpg"
@@ -60,8 +61,16 @@ export default function Forecast() {
             <div>18 °C / 9° C</div>
           </div>
         </div>
+        <small>
+          open source code by{" "}
+          <a
+            className="github-link"
+            href="https://github.com/nissrineninas/weather-react"
+          >
+            Nissrine Saraireh
+          </a>
+        </small>
       </div>
-      <p>open source code by Nissrine Saraireh</p>
     </section>
   );
 }

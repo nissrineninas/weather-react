@@ -13,7 +13,7 @@ export default function Forecast() {
               className="float-left"
             />
             <span className="float-left auto">
-              <strong id="temperature-display">Current Temp here</strong>
+              <strong id="temperature-display">Current Temp </strong>
               <span className="unit">
                 <button href="#" id="celsius-convertor" className="active">
                   °C

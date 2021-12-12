@@ -103,8 +103,8 @@ small {
 .weather-forecast .forecast-first-day::shadow {
   color: greenyellow;
 }
-.weather-forecast {
-  color: greenyellow;
+.fiveDaysFutureForcast {
+  color: rgb(36, 59, 85) 91.1%;
   margin-top: 20px;
   text-align: center;
 }
