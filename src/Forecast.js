@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import ReactAnimatedWeather from "react-animated-weather";
 
 export default function Forecast() {
   return (
@@ -14,6 +15,13 @@ export default function Forecast() {
               className="card-img-top"
               alt="representative forecast icon"
             />
+            <ReactAnimatedWeather
+              icon="SLEET"
+              color="green"
+              size={50}
+              animate={true}
+            />
+            );
             <div>18 °C / 9° C</div>
           </div>
         </div>
