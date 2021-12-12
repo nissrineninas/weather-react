@@ -10,28 +10,24 @@ export default function Forecast() {
         <div className="col-2 justify-content-around">
           <div className="card">
             <div>Tomorrow</div>
-            <img
-              src="images/sunflower.jpg"
-              className="card-img-top"
-              alt="representative forecast icon"
-            />
             <ReactAnimatedWeather
-              icon="SLEET"
-              color="green"
+              icon="CLEAR_DAY"
+              color="#ADFF2F"
               size={50}
               animate={true}
             />
-            );
+
             <div>18 °C / 9° C</div>
           </div>
         </div>
         <div className="col-2 justify-content-around">
           <div className="card">
             <div>Tmrw+1</div>
-            <img
-              src="images/sunflower.jpg"
-              className="card-img-top"
-              alt="representative forecast icon"
+            <ReactAnimatedWeather
+              icon="CLEAR_DAY"
+              color="#ADFF2F"
+              size={50}
+              animate={true}
             />
             <div>18 °C / 9° C</div>
           </div>
@@ -39,10 +35,11 @@ export default function Forecast() {
         <div className="col-2 justify-content-around">
           <div className="card">
             <div>Tmrw+2</div>
-            <img
-              src="images/sunflower.jpg"
-              className="card-img-top"
-              alt="representative forecast icon"
+            <ReactAnimatedWeather
+              icon="CLEAR_DAY"
+              color="#ADFF2F"
+              size={50}
+              animate={true}
             />
             <div>18 °C / 9° C</div>
           </div>
@@ -50,10 +47,11 @@ export default function Forecast() {
         <div className="col-2 justify-content-around">
           <div className="card">
             <div>Tmrw+3</div>
-            <img
-              src="images/sunflower.jpg"
-              className="card-img-top"
-              alt="representative forecast icon"
+            <ReactAnimatedWeather
+              icon="CLEAR_DAY"
+              color="#ADFF2F"
+              size={50}
+              animate={true}
             />
             <div>18 °C / 9° C</div>
           </div>
@@ -61,10 +59,11 @@ export default function Forecast() {
         <div className="col-2 justify-content-around">
           <div className="card ">
             <div>Tmrw+4</div>
-            <img
-              src="images/sunflower.jpg"
-              className="card-img-top"
-              alt="representative forecast icon"
+            <ReactAnimatedWeather
+              icon="CLEAR_DAY"
+              color="#ADFF2F"
+              size={50}
+              animate={true}
             />
             <div>18 °C / 9° C</div>
           </div>

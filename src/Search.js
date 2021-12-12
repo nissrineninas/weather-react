@@ -1,50 +1,90 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-export default function Search(props) {
-  let [city, setCity] = useState("Enter city here to see the weather");
+export default function Weather() {
+  let [city, setCity] = useState("");
+  let [temperature, setTemperature] = useState(null);
+  let [description, setdescription] = useState(null);
+  let [humidity, sethumidity] = useState(null);
+  let [wind, setWind] = useState(null);
+  let [icon, setIcon] = useState(null);
+  let unit = "metric";
+
   function handleSubmit(event) {
     event.preventDefault();
-    if (city === "Enter city here to see the weather") {
-      alert("please enter a city to search for");
+    if (city) {
+      let key = "ab10edc1d32f1dd18832060f89f088c3";
+      let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${key}`;
+
+      axios
+        .get(apiUrl)
+        .then(setWeatherVariables)
+        .catch(function (error) {
+          emptyWeather();
+          alert(`${city} cannot be found, please check your entry`);
+        });
     } else {
-      alert(`searching for ${city}`);
+      alert("please enter a city to search for");
     }
   }
-
   function updateCity(event) {
     event.preventDefault();
-    setCity(event.target.value.toLowerCase());
+    setCity(event.target.value);
+  }
+  function setWeatherVariables(response) {
+    console.log(response.data);
+    setTemperature(Math.round(response.data.main.temp));
+    setdescription(response.data.weather[0].description);
+    sethumidity(response.data.main.humidity);
+    setWind(response.data.wind.speed);
+    setIcon(response.data.weather[0].icon);
+  }
+  function emptyWeather() {
+    setTemperature(null);
+    setdescription(null);
+    sethumidity(null);
+    setWind(null);
+    setIcon(null);
   }
 
   return (
-    <div className="weather-app">
-      <form id="search-form" onSubmit={handleSubmit}>
-        <div className="row search-form-row">
-          <div className="col-md-9">
+    <div className="container border-0">
+      <div className="row">
+        <div className="col-12">
+          <form onSubmit={handleSubmit}>
             <input
-              id="city-input"
-              className="form-control"
               type="search"
-              placeholder="Enter city here to see the weather"
+              placeholder={city}
               onChange={updateCity}
+              autoFocus={true}
             />
-          </div>
-          <div className="col-md-3">
-            <input
-              id="search-clicked"
-              className="btn btn-outline-light material-icons"
-              type="submit"
-              value="search"
-            />
-            <input
-              id="current-location"
-              className="btn btn-outline-light material-icons"
-              type="button"
-              value="my_location"
-            />
-          </div>
+            <input type="submit" value="Search" />
+          </form>
         </div>
-      </form>
+      </div>
+      <div className="row desciption-text">
+        <ul>
+          <li>
+            <strong>Temperature:</strong> {temperature}°C in{" "}
+            <strong>{city}</strong>
+          </li>
+          <li>
+            <strong>Description:</strong> {description}
+          </li>
+          <li>
+            <strong>Humidity:</strong> {humidity}
+          </li>
+          <li>
+            <strong>Wind:</strong> {wind}
+          </li>
+          <li>
+            <img
+              alt="weather icon"
+              src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+            />
+          </li>
+        </ul>{" "}
+      </div>
     </div>
   );
 }

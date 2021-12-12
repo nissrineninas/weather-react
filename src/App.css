@@ -1,10 +1,19 @@
+:root {
+  --primary-color: rgb(33, 33, 33);
+  --secondary-color: greenyellow;
+  --forecast-color: rgb(36, 59, 85) 91.1%;
+  --border-color: rgba(190, 226, 196, 0.9);
+  --link-color: lightyellow;
+  --secondary-link-color: lightgray;
+}
+
 body {
   font-family: arial, sans-serif;
   background-color: aliceblue;
 }
 
 h1 {
-  color: greenyellow;
+  color: var(--secondary-color);
   font: italic;
   font-size: 24px;
   font-weight: Bold;
@@ -13,7 +22,8 @@ h1 {
   text-align: center;
 }
 
-li {
+li,
+.desciption-text {
   color: lightgray;
   display: table-row;
   font-size: 16px;
@@ -22,7 +32,6 @@ li {
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 90px;
 }
 ul {
   display: inline;
@@ -30,29 +39,24 @@ ul {
   padding: 0;
 }
 
-small {
-  color: greenyellow;
-  display: block;
+small,
+strong {
+  color: var(--secondary-color);
   text-align: center;
   margin: 0 auto;
 }
 
 .github-link:link {
-  color: lightyellow;
+  color: var(--link-color);
   text-decoration: none;
 }
 .github-link:visited {
-  color: lightgray;
+  color: var(--border-color);
   text-decoration: none;
 }
 .github-link:hover {
-  color: greenyellow;
+  color: var(--secondary-link-color);
   text-decoration: none;
-}
-
-.widget-wrapper {
-  margin: 0px auto;
-  max-width: 700px;
 }
 
 .weather-icon-temperature {
@@ -60,24 +64,20 @@ small {
 }
 
 .weather-icon-temperature strong {
-  color: rgb(33, 33, 33);
+  color: var(--primary-color);
   font-size: 60px;
   line-height: 60px;
 }
 .weather-icon-temperature .unit {
   font-size: 14px;
-  color: lightgray;
+  color: var(--secondary-link-color);
   margin-top: 0;
   position: relative;
   top: -28px;
 }
 
-.weather-icon-temperature a {
-  color: lightgray;
-  text-decoration: none;
-}
 .weather-icon-temperature .active {
-  color: greenyellow;
+  color: var(--secondary-color);
   cursor: default;
 }
 
@@ -101,15 +101,15 @@ small {
   width: 30px;
 }
 .weather-forecast .forecast-first-day::shadow {
-  color: greenyellow;
+  color: var(--secondary-color);
 }
 .fiveDaysFutureForcast {
-  color: rgb(36, 59, 85) 91.1%;
+  color: var(--forecast-color);
   margin-top: 20px;
   text-align: center;
 }
 .weather-app {
-  border: 1px solid #dddddd;
+  border: 1px solid var(--border-color);
   border-radius: 10px;
   font-weight: normal;
   padding: 20px;
@@ -122,112 +122,12 @@ small {
   background: linear-gradient(
     109.6deg,
     rgb(20, 30, 48) 11.2%,
-    rgb(36, 59, 85) 91.1%
+    var(--forecast-color)
   );
 
-  border: 5px outset rgba(190, 226, 196, 0.9);
+  border: 5px outset var(--border-color);
   border-radius: 70px;
   box-shadow: inset 0px 0px 44px 7px rgba(12, 70, 131, 0.3);
   margin-top: 20px;
   padding: 20px 20px;
-}
-
-#weather-description::first-letter {
-  text-transform: capitalize;
-}
-
-#temperature-display {
-  color: yellowgreen;
-}
-#search-form {
-  margin-bottom: 20px;
-}
-
-/* this is self taught (and still learning) using youtube w3schools and MDN with the basics taken from here https://www.inwebson.com/css3/css3-background-animations/to grasp a deeper understanding  */
-body {
-  /* Firefox support check out the animation differences between chrome and firefox*/
-  background-image: -moz-radial-gradient(
-      circle,
-      #ffffff 2px,
-      rgba(248, 255, 128, 0.5) 4px,
-      transparent 40px
-    ),
-    -moz-radial-gradient(circle, #ffffff 1px, rgba(255, 186, 170, 0.4) 3px, transparent
-          30px),
-    -moz-radial-gradient(ellipse, rgba(255, 255, 255, 0.9) 1px, rgba(
-            251,
-            255,
-            186,
-            0.3
-          )
-          2px, transparent 40px),
-    -moz-radial-gradient(ellipse, rgba(255, 255, 255, 0.4), rgba(
-            253,
-            255,
-            219,
-            0.2
-          )
-          1px, transparent 30px);
-
-  /* Webkit For Safari 3.0 to 6.0 support check out the animation differences between chrome and firefox*/
-  background-image: -webkit-gradient(
-      radial,
-      20% 15%,
-      2,
-      10% 20%,
-      40,
-      from(white),
-      color-stop(0.1, rgba(163, 255, 47, 0.986)),
-      to(transparent)
-    ),
-    -webkit-gradient(radial, 50% 50%, 1, 50% 50%, 30, from(white), color-stop(0.1, rgba(255, 186, 170, 0.4)), to(transparent)),
-    -webkit-gradient(radial, 50% 50%, 1, 50% 50%, 40, from(rgba(255, 255, 255, 0.9)), color-stop(0.05, rgba(251, 255, 186, 0.3)), to(transparent)),
-    -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 30, from(rgba(255, 255, 255, 0.4)), color-stop(0.03, rgba(253, 255, 219, 0.2)), to(transparent));
-
-  /* Background Attributes*/
-  background-size: 550px 550px, 350px 350px, 250px 270px, 220px 200px;
-
-  /* Animation */
-  animation-name: movement;
-  animation-duration: 5s;
-  animation-direction: alternate-reverse;
-  animation-timing-function: ease, step-start, cubic-bezier(0.1, 0.7, 1, 0.1);
-  animation-iteration-count: infinite;
-
-  /* Firefox */
-  -moz-animation-name: movement;
-  -moz-animation-duration: 5s;
-  -moz-animation-timing-function: ease-in-out 4s;
-  -moz-animation-iteration-count: infinite;
-
-  /* Webkit */
-  -webkit-animation-name: movement;
-  -webkit-animation-duration: 5s;
-  -webkit-animation-timing-function: ease, step-start,
-    cubic-bezier(0.1, 0.7, 1, 0.1);
-  -webkit-animation-iteration-count: infinite;
-}
-@keyframes movement {
-  from {
-    background-position: 0 0, 30px 60px, 130px 270px, 70px 150px;
-  }
-  to {
-    background-position: -550px 0, -320px 60px, -120px 270px, -150px 150px;
-  }
-}
-@-moz-keyframes movement {
-  from {
-    transform: translate(0% 50%);
-  }
-  to {
-    transform: skew(30deg, 20deg);
-  }
-}
-@-webkit-keyframes movement {
-  from {
-    background-position: 0 0, 30px 60px, 130px 270px, 70px 150px;
-  }
-  to {
-    background-position: -550px 0, -320px 60px, -120px 270px, -150px 150px;
-  }
 }

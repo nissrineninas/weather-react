@@ -2,8 +2,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
 import Search from "./Search";
-import Display from "./Display";
-import Weather from "./Weather";
 import Forecast from "./Forecast";
 
 function App() {
@@ -13,8 +11,6 @@ function App() {
         <h1>React WeatherApp</h1>
         <div className="container">
           <Search />
-          <Display />
-          <Weather />
           <Forecast />
         </div>
       </header>

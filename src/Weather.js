@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Forecast() {
+export default function WeatherToday() {
   return (
     <div className="container">
       <div className="row">
@@ -25,21 +25,6 @@ export default function Forecast() {
               </span>
             </span>
           </span>
-        </div>
-        <div className="col-6">
-          <ul>
-            <li>
-              <span id="precipitation"> Precipitation</span>
-              <span id="precipitation-unit"> unit</span>
-            </li>
-            <li>
-              <span id="humidity">Humidity</span>
-            </li>
-            <li>
-              <span id="wind">Wind</span>
-              <span id="wind-unit">unit</span>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
