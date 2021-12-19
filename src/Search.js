@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./Search.css";
+import Date from "./Date";
 import axios from "axios";
 
 export default function Weather() {
@@ -9,6 +11,7 @@ export default function Weather() {
   let [wind, setWind] = useState(null);
   let [icon, setIcon] = useState(null);
   let unit = "metric";
+  let date = new Date();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -38,7 +41,11 @@ export default function Weather() {
     sethumidity(response.data.main.humidity);
     setWind(response.data.wind.speed);
     setIcon(response.data.weather[0].icon);
+    date = response.data.dt * 1000;
+    console.log(response.data.dt * 1000);
+    console.log(date);
   }
+
   function emptyWeather() {
     setTemperature(null);
     setdescription(null);
@@ -49,41 +56,50 @@ export default function Weather() {
 
   return (
     <div className="container border-0">
-      <div className="row">
-        <div className="col-12">
-          <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
+        <div className="row">
+          <div className="col-md-9">
             <input
               type="search"
-              placeholder={city}
+              placeholder="Enter a city"
               onChange={updateCity}
               autoFocus={true}
             />
+          </div>
+          <div className="col-md-3">
             <input type="submit" value="Search" />
-          </form>
+          </div>
         </div>
-      </div>
-      <div className="row desciption-text">
-        <ul>
-          <li>
-            <strong>Temperature:</strong> {temperature}°C in{" "}
-            <strong>{city}</strong>
-          </li>
-          <li>
-            <strong>Description:</strong> {description}
-          </li>
-          <li>
-            <strong>Humidity:</strong> {humidity}
-          </li>
-          <li>
-            <strong>Wind:</strong> {wind}
-          </li>
-          <li>
-            <img
-              alt="weather icon"
-              src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-            />
-          </li>
-        </ul>{" "}
+      </form>
+      <div className="row">
+        <div className="col-6">
+          <p>{city}</p>
+          <ul>
+            <li>
+              <Date dt={date} />
+            </li>
+          </ul>
+          <h2>{temperature}°C</h2>
+        </div>
+        <div className="col-6">
+          <ul>
+            <li>
+              <strong>Description:</strong> {description}
+            </li>
+            <li>
+              <strong>Humidity:</strong> {humidity}
+            </li>
+            <li>
+              <strong>Wind:</strong> {wind}
+            </li>
+            <li>
+              <img
+                alt="weather icon"
+                src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+              />
+            </li>
+          </ul>{" "}
+        </div>
       </div>
     </div>
   );

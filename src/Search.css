@@ -1,0 +1,35 @@
+:root {
+  --primary-color: rgb(33, 33, 33);
+  --secondary-color: greenyellow;
+  --forecast-color: rgb(36, 59, 85) 91.1%;
+  --border-color: rgba(190, 226, 196, 0.9);
+  --link-color: lightyellow;
+  --secondary-link-color: lightgray;
+}
+
+h2,
+p {
+  color: var(--secondary-color);
+  font: italic;
+  font-size: 24px;
+  font-weight: Bold;
+  line-height: 28px;
+  margin-top: 20px;
+  text-align: left;
+  text-transform: capitalize;
+}
+li {
+  color: var(--border-color);
+  display: table-row;
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 19px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}

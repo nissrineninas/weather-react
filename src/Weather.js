@@ -5,10 +5,10 @@ export default function WeatherToday() {
     <div className="container">
       <div className="row">
         <div className="col-6">
-          <span className="clearfix weather-icon-temperature">
+          <span className="clearfix weather">
             <img
               src="#"
-              alt="weather-forecast"
+              alt="today-weather-icon"
               id="weather-icon"
               className="float-left"
             />
