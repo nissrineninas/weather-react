@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <h1>React WeatherApp</h1>
         <div className="container">
-          <Search />
+          <Search unit="metric" />
           <Forecast />
         </div>
       </header>
