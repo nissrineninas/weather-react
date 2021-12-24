@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import ReactAnimatedWeather from "react-animated-weather";
 
-export default function Forecast() {
+export default function Forecast(props) {
   return (
     <section className="fiveDaysFutureForcast">
       <div className="row justify-content-center">

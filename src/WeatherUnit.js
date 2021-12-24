@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./WeatherUnit.css";
 
 export default function WeatherUnit(props) {
   const [unit, setUnit] = useState("metric");
@@ -25,14 +26,13 @@ export default function WeatherUnit(props) {
       <div>
         <h2 id="temperature-display">
           {Math.round(props.temp)}
-          <span className="unit">
-            °C
-            <a href="/" onClick={showImperial}>
-              {" "}
-              | °F
-            </a>
-          </span>
+          °C
         </h2>
+        <span className="unit">
+          <a href="/" onClick={showImperial}>
+            °C | °F
+          </a>
+        </span>
       </div>
     );
   } else {

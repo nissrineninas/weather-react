@@ -12,17 +12,17 @@ body {
   background-color: aliceblue;
 }
 
-h1 {
+h1,
+.futureForecast {
   color: var(--secondary-color);
   font: italic;
   font-size: 24px;
   font-weight: Bold;
   line-height: 28px;
   margin-bottom: 0;
+  padding-bottom: 20px;
   text-align: center;
 }
-
-
 
 small,
 strong {

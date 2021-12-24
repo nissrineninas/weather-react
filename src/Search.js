@@ -8,6 +8,7 @@ export default function Search(props) {
   const [callAPI, setCallApi] = useState(false);
   let [date, setDate] = useState(new Date());
   let unit = props.unit;
+  let [weatherData,setweatherDataTwo]= useState(null);
   const [weatherData, setWeatherData] = useState({
     coordinates: null,
     temperature: null,
@@ -32,7 +33,8 @@ export default function Search(props) {
   function connectToAPI() {
     setCallApi(false);
     let key = "ab10edc1d32f1dd18832060f89f088c3";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${key}`;
+    let count = 5;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=${count}&units=${unit}&appid=${key}`;
     axios
       .get(apiUrl)
       .then(setWeatherVariables)
@@ -43,17 +45,21 @@ export default function Search(props) {
   }
 
   function setWeatherVariables(response) {
-    setDate(new Date(response.data.dt * 1000));
+    console.log(response.data.list[0]);
+    setDate(new Date(response.data.list[0].dt * 1000));
     setWeatherData({
       coordinates: response.data.coord,
-      temperature: response.data.main.temp,
-      humidity: response.data.main.humidity,
-      date: new Date(response.data.dt * 1000),
-      description: response.data.weather[0].description,
-      icon: response.data.weather[0].icon,
-      wind: response.data.wind.speed,
-      city: response.data.name,
+      temperature: response.data.list[0].main.temp,
+      temperatureDayOneMax: response.data.list[1].main.temp_max,
+      temperatureDayOneMin: response.data.list[1].main.temp_min,
+      humidity: response.data.list[0].main.humidity,
+      date: new Date(response.data.list[0].dt * 1000),
+      description: response.data.list[0].weather[0].description,
+      icon: response.data.list[0].weather[0].icon,
+      wind: response.data.list[0].wind.speed,
+      city: response.data.city.name,
     });
+    setweatherDataTwo(response.data);
   }
   function emptyWeather() {
     setWeatherData({
@@ -98,6 +104,7 @@ export default function Search(props) {
         icon={weatherData.icon}
         date={date}
       />
+      <forecast data={weatherData}; />
     </div>
   );
 }
