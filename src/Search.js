@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import DisplayWeatherInfo from "./DisplayWeatherInfo";
-import Forecast from "./Forecast";
+// import Forecast from "./Forecast";
 import axios from "axios";
 import "./Search.css";
 
 export default function Search(props) {
   const [city, setCity] = useState();
   const [callApi, setCallApi] = useState(false);
-  const [callForcastApiFlag, setCallForcastApiFlag] = useState(false);
+  // const [callForcastApiFlag, setCallForcastApiFlag] = useState(false);
   //let callForcastApiFlag = false;
   let unit = props.unit;
   // let callForcastApiFlag = 0;
-  let [lat, setLat] = useState(null);
-  let [lon, setLon] = useState(null);
+  // let [lat, setLat] = useState(null);
+  // let [lon, setLon] = useState(null);
   const [weatherData, setWeatherData] = useState({
     temperature: null,
     humidity: null,
@@ -47,7 +47,7 @@ export default function Search(props) {
       .then(setWeatherVariables)
       .catch(function (error) {
         emptyWeather();
-        setCallForcastApiFlag(false);
+        // setCallForcastApiFlag(false);
         // callForcastApiFlag = false;
 
         alert(`${city} cannot be found, please check your entry`);
@@ -64,9 +64,9 @@ export default function Search(props) {
       wind: response.data.wind.speed,
       city: response.data.name,
     });
-    setLon(response.data.coord.lon);
-    setLat(response.data.coord.lat);
-    setCallForcastApiFlag(true);
+    // setLon(response.data.coord.lon);
+    // setLat(response.data.coord.lat);
+    // setCallForcastApiFlag(true);
     // callForcastApiFlag = true;
   }
 
