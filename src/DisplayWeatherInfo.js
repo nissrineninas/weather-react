@@ -3,8 +3,6 @@ import Date from "./Date";
 import WeatherUnit from "./WeatherUnit";
 
 export default function DisplayWeatherInfo(props) {
-  console.log("---->");
-  console.log(props.temp);
   return (
     <div className="row">
       <div className="col-6">

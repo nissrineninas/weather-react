@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import DisplayWeatherInfo from "./DisplayWeatherInfo";
+import Forecast from "./Forecast";
 import axios from "axios";
 import "./Search.css";
 
 export default function Search(props) {
   const [city, setCity] = useState();
-  const [callAPI, setCallApi] = useState(false);
-  let [date, setDate] = useState(new Date());
+  const [callApi, setCallApi] = useState(false);
+  const [callForcastApiFlag, setCallForcastApiFlag] = useState(false);
+  //let callForcastApiFlag = false;
   let unit = props.unit;
-  let [weatherData,setweatherDataTwo]= useState(null);
+  // let callForcastApiFlag = 0;
+  let [lat, setLat] = useState(null);
+  let [lon, setLon] = useState(null);
   const [weatherData, setWeatherData] = useState({
-    coordinates: null,
     temperature: null,
     humidity: null,
     date: null,
@@ -23,6 +26,8 @@ export default function Search(props) {
   function handleSubmit(event) {
     event.preventDefault();
     setCallApi(true);
+    //callForcastApiFlag = true;
+    // setCallForcastApiFlag(true)
   }
 
   function updateCity(event) {
@@ -30,37 +35,41 @@ export default function Search(props) {
     setCity(event.target.value);
   }
 
-  function connectToAPI() {
+  function connectToApi() {
     setCallApi(false);
+
+    // let key = "8e2aa47d8f12b05a2e1ea5f309432997";
     let key = "ab10edc1d32f1dd18832060f89f088c3";
-    let count = 5;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=${count}&units=${unit}&appid=${key}`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${key}`;
+    console.log(`SEARCH apiURL --------->${apiUrl}`);
     axios
       .get(apiUrl)
       .then(setWeatherVariables)
       .catch(function (error) {
         emptyWeather();
+        setCallForcastApiFlag(false);
+        // callForcastApiFlag = false;
+
         alert(`${city} cannot be found, please check your entry`);
       });
   }
 
   function setWeatherVariables(response) {
-    console.log(response.data.list[0]);
-    setDate(new Date(response.data.list[0].dt * 1000));
     setWeatherData({
-      coordinates: response.data.coord,
-      temperature: response.data.list[0].main.temp,
-      temperatureDayOneMax: response.data.list[1].main.temp_max,
-      temperatureDayOneMin: response.data.list[1].main.temp_min,
-      humidity: response.data.list[0].main.humidity,
-      date: new Date(response.data.list[0].dt * 1000),
-      description: response.data.list[0].weather[0].description,
-      icon: response.data.list[0].weather[0].icon,
-      wind: response.data.list[0].wind.speed,
-      city: response.data.city.name,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
+      wind: response.data.wind.speed,
+      city: response.data.name,
     });
-    setweatherDataTwo(response.data);
+    setLon(response.data.coord.lon);
+    setLat(response.data.coord.lat);
+    setCallForcastApiFlag(true);
+    // callForcastApiFlag = true;
   }
+
   function emptyWeather() {
     setWeatherData({
       temperature: null,
@@ -71,13 +80,34 @@ export default function Search(props) {
       city: null,
       date: null,
     });
-    setDate(new Date());
   }
 
-  if (callAPI) {
-    connectToAPI();
-    return "Loading...";
+  if (callApi) {
+    connectToApi();
+    // callForcastApiFlag = true;
+    // return callForcastApiFlag;
   }
+
+  let forcast = null;
+  // if (callForcastApiFlag) {
+  //   // console.log(`if statement here --> ${callForcastApiFlag}`);
+  //   console.log("pass true");
+  //   forcast = (
+  //     <Forecast
+  //       callForcastApi={callForcastApiFlag.toString()}
+  //       unit={unit}
+  //       lat={lat}
+  //       lon={lon}
+  //     />
+  //   );
+  //   setCallForcastApiFlag(false);
+  //   // callForcastApiFlag = false;
+  // } else {
+  //   forcast = (
+  //     <Forecast callForcastApi={"donot"} unit={unit} lat={lat} lon={lon} />
+  //   );
+  // }
+
   return (
     <div className="container border-0">
       <form onSubmit={handleSubmit}>
@@ -102,9 +132,9 @@ export default function Search(props) {
         humidity={weatherData.humidity}
         wind={weatherData.wind}
         icon={weatherData.icon}
-        date={date}
+        date={weatherData.date}
       />
-      <forecast data={weatherData}; />
+      {forcast}
     </div>
   );
 }
